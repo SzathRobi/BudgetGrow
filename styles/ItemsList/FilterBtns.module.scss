@@ -1,0 +1,22 @@
+@import "../utility//variables.scss";
+
+.filterBtns {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.filterBtn {
+    width: 6.5rem;
+    color: $color-secondary-support;
+    background-color: transparent;
+    background-color: $color-darkest;
+    padding: 0.6rem 0.4rem;
+    border-radius: 5rem;
+    font-size: 0.9rem;
+    box-shadow: 2px 2px 5px #000000, 
+                -2px -2px 2px #666666,
+                inset 0px 0px 0px #000000,
+                inset 0px 0px 0px #666666
+}

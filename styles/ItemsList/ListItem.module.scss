@@ -1,0 +1,33 @@
+@import "../utility/variables.scss";
+
+.listItem {
+  padding: 0.5rem 1rem;
+  width: 18rem;
+  height: 4.5rem;
+  background-color: #151515;
+  border-radius: 0.4rem;
+  box-shadow: inset 5px 5px 14px #000, inset -2px -3px 6px #575757;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  h4 {
+    &:last-of-type {
+      color: $color-text;
+    }
+  }
+
+  span {
+    color: $color-text;
+  }
+}
+
+.priceIndicator {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  border-radius: 2rem;
+}
