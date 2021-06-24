@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import nookies from "nookies";
 import { parseCookies } from "nookies";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AddItem from "../comps/AddItem/AddItem";
 import Header from "../comps/Header/Header";
 import ItemList from "../comps/ItemList/ItemList";
@@ -14,33 +14,37 @@ import axios from "axios";
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
+  const response = await fetch("http://localhost:1337/transactions", {
+    method: "GET",
+    headers: {
+      'Authorization': `Bearer ${cookies.jwt}`
+    }
+  })
+  const transactions = await response.json()
   return {
     props: {
       cookies: cookies,
+      transactions: transactions
     },
   };
 }
 
-export default function Home({ cookies }) {
+export default function Home({ cookies, transactions }) {
   const router = useRouter();
+  const [user, setUser] = useState(null)
 
+  console.log("transactions", transactions)
   useEffect(() => {
-    if (!cookies.user || !cookies.jwt) {
-      router.push("/auth/login");
-      return;
+    try{
+      setUser(JSON.parse(cookies.user));
+      console.log(user);
+    }
+    catch(error) {
+      console.log(error)
+      router.push("/auth/login")
     }
   }, []);
 
-  const user = JSON.parse(cookies.user);
-  console.log(user);
-
-  const testFn = () => {
-    axios
-      .post("http://localhost:1337/tests", { name: "oksa", random_num: 23 })
-      .then((response) => {
-        console.log(response);
-      });
-  };
 
   //  const user = JSON.parse(cookies.user);
   // const user = JSON.parse(cookies.user);
@@ -62,8 +66,7 @@ export default function Home({ cookies }) {
       <Header />
       <Total />
       <main className={styles.main}>
-        {<ItemList transactions={[]} />}
-        <button onClick={testFn}>TESTFN</button>
+        {<ItemList transactions={transactions} />}
       </main>
     </motion.section>
   );
