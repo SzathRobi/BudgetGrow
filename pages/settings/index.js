@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
+import SettingLink from "../../comps/SettingCard/SettingLink";
 import styles from "../../styles/Settings/Settings.module.scss";
 
 function Settings() {
@@ -11,19 +12,9 @@ function Settings() {
       exit={{ x: "100%" }}
       transition={{ type: "tween" }}
     >
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <h1>Settings</h1>
-      <Link href="/">
-        <a>HOME</a>
-      </Link>
+      <SettingLink title="MONTHLY INCOME" href="settings/income" />
+      <SettingLink title="MONTHLY EXPENSE" href="settings/expense" />
+      <SettingLink title="HOME" href="/" />
     </motion.section>
   );
 }

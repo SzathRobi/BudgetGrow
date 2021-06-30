@@ -18,14 +18,17 @@ function login() {
         password: password,
       };
 
-      const login = await fetch(`http://localhost:1337/auth/local`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginInfo),
-      });
+      const login = await fetch(
+        process.env.PUBLIC_api_url || "http://localhost:1337/auth/local",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginInfo),
+        }
+      );
 
       const loginResponse = await login.json();
       console.log(loginResponse);

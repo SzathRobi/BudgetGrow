@@ -1,0 +1,31 @@
+@import "../utility/variables.scss";
+
+.filters {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.btn_container {
+  position: relative;
+  display: flex;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.2rem 0.8rem;
+  background-color: transparent;
+  border-radius: 0.7rem;
+  color: $color-secondary-support;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.indicator {
+  width: 5rem;
+  height: 0.2rem;
+  background-color: $color-secondary;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: -0.3rem;
+  left: 1.3rem;
+}

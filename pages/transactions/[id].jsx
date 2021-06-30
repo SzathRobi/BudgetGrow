@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import ToggleBtn from "../../comps/AddItem/ToggleBtn";
 import styles from "../../styles/AddItem/AddItem.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import axios from "axios";
 import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
+
   return {
     props: {
       cookies: cookies,
@@ -16,8 +17,11 @@ export async function getServerSideProps(ctx) {
   };
 }
 
-const New = ({ cookies }) => {
+const Update = ({ cookies }) => {
   const router = useRouter();
+  const transaction_query = router.query;
+  const [transaction, setTransaction] = useState(null);
+
   const [toggleChecked, setToggleChecked] = useState(true);
   const updateToggleChecked = () => setToggleChecked(!toggleChecked);
 
@@ -26,7 +30,27 @@ const New = ({ cookies }) => {
   const [amount, setAmount] = useState("");
   const updateAmount = (event) => setAmount(event.target.value);
 
-  const createItem = (event) => {
+  useEffect(() => {
+    try {
+      axios
+        .get(`http://localhost:1337/transactions/${transaction_query.id}`, {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        })
+        .then((response) => {
+          setTransaction(response.data);
+          setTitle(response.data.title);
+          setAmount(response.data.amount);
+          setToggleChecked(response.data.income);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const updateItem = (event) => {
     event.preventDefault();
     try {
       const newTransaction = {
@@ -37,9 +61,9 @@ const New = ({ cookies }) => {
       };
 
       axios
-        .post(
+        .put(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-          "http://localhost:1337/transactions",
+          `http://localhost:1337/transactions/${transaction_query.id}`,
           newTransaction,
           {
             headers: {
@@ -65,7 +89,7 @@ const New = ({ cookies }) => {
       transition={{ type: "tween" }}
       className={styles.new}
     >
-      <form className={styles.newForm} onSubmit={(event) => createItem(event)}>
+      <form className={styles.newForm} onSubmit={(event) => updateItem(event)}>
         <section className={styles.formSection}>
           <h3>Title</h3>
           <input
@@ -98,7 +122,7 @@ const New = ({ cookies }) => {
             <a>Home</a>
           </Link>
           <button type="submit" className={styles.addBtn}>
-            ADD
+            Update
           </button>
         </section>
       </form>
@@ -106,4 +130,4 @@ const New = ({ cookies }) => {
   );
 };
 
-export default New;
+export default Update;

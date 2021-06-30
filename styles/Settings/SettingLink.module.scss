@@ -1,0 +1,13 @@
+@import "../utility/variables.scss";
+
+.link {
+  width: 90%;
+  margin: 1rem 0;
+  padding: 1.2rem 2.5rem;
+  background-color: $color-darkest;
+  color: $color-secondary;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  box-shadow: 5px 5px 12px #000, -2px -2px 5px #777;
+}

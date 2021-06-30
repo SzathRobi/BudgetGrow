@@ -14,6 +14,8 @@ body {
 
 body {
   background-color: $color-primary;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {

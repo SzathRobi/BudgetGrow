@@ -1,11 +1,15 @@
+import Header from "../comps/Header/Header";
 import "../styles/globals.scss";
 import { AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps, router }) {
   return (
-    <AnimatePresence exitBeforeEnter>
-      <Component {...pageProps} key={router.route} />
-    </AnimatePresence>
+    <section>
+      <Header />
+      <AnimatePresence exitBeforeEnter>
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
+    </section>
   );
 }
 
