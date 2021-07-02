@@ -30,18 +30,34 @@ function register() {
       password,
     };
 
+    const newSetting = {
+      income: 0,
+      expense: 0,
+      current: 0,
+    };
+
+    let token = null;
+
     axios
       .post("http://localhost:1337/auth/local/register", newUser)
       .then((response) => {
         // Handle success.
+        axios.post("http://localhost:1337/auth/local/settings", newSetting, {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${response.data.jwt}`,
+          },
+        });
+
         nookies.set(null, "jwt", response.data.jwt, {
-          maxAge: 30 * 24 * 60 * 60, // 1 x 12 x 60 x 60 -> 12óra
+          maxAge: 1 * 24 * 60 * 60, // 1 x 12 x 60 x 60 -> 12óra
           path: "/",
         });
         nookies.set(null, "user", JSON.stringify(response.data.user), {
-          maxAge: 30 * 24 * 60 * 60,
+          maxAge: 1 * 24 * 60 * 60,
           path: "/",
         });
+
         Router.push("/");
         // Check response in console
         console.log("RESPONSE:", response);

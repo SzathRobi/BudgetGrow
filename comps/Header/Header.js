@@ -41,47 +41,45 @@ const Header = ({ updateAddItemOpen }) => {
     backgroundColor: router.route === "/" ? "red" : "blue",
   };
 
+  //removed ul and li
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <ul className={styles.ul}>
-          <li className={styles.li}>
-            <Link href={"/"}>
-              <a
-                onClick={() => updateActiveTab(1)}
-                id={styles.navBtn_first}
-                className={styles.navBtn}
-                style={homeTabStyle}
-              >
-                HOME
-              </a>
-            </Link>
-          </li>
-          <li className={styles.li}>
-            <Link href={"/transactions/new"}>
-              <a
-                onClick={() => updateActiveTab(2)}
-                id={styles.navBtn_first}
-                className={styles.navBtn}
-                style={newItemTabStyle}
-              >
-                NEW
-              </a>
-            </Link>
-          </li>
-          <li className={styles.li}>
-            <Link href="/settings">
-              <a
-                onClick={() => updateActiveTab(3)}
-                id={styles.navBtn_last}
-                className={styles.navBtn}
-                style={settingsTabStyle}
-              >
-                SETTINGS
-              </a>
-            </Link>
-          </li>
-        </ul>
+        <div className={styles.container}>
+          <Link href={"/"}>
+            <a
+              onClick={() => updateActiveTab(1)}
+              id={styles.navBtn_first}
+              className={styles.navBtn}
+              style={homeTabStyle}
+            >
+              HOME
+            </a>
+          </Link>
+
+          <Link href={"/transactions/new"}>
+            <a
+              onClick={() => updateActiveTab(2)}
+              id={styles.navBtn_first}
+              className={styles.navBtn}
+              style={newItemTabStyle}
+            >
+              NEW
+            </a>
+          </Link>
+
+          <Link href="/settings">
+            <a
+              onClick={() => updateActiveTab(3)}
+              id={styles.navBtn_last}
+              className={styles.navBtn}
+              style={settingsTabStyle}
+            >
+              SETTINGS
+            </a>
+          </Link>
+        </div>
         {/* <div className={styles.addBtnContainer}>
           <div className={styles.buttonDecor} />
           <Link href={linkUrl}>

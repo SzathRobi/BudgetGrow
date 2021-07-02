@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenSquare } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 import styles from "../../styles/ItemsList/ListItem.module.scss";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -42,7 +43,17 @@ const ListItem = ({ transaction, cookies }) => {
   const goToUpdate = () => router.push(`/transactions/${transaction.id}`);
 
   return (
-    <section className={styles.listItem}>
+    <motion.section
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      transition={{
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+      }}
+      className={styles.listItem}
+    >
       <section>
         <h4 style={amountColor}>
           {transaction.amount} <span>FT</span>
@@ -62,7 +73,7 @@ const ListItem = ({ transaction, cookies }) => {
         />
         <div className={styles.priceIndicator} style={indicatorColor} />
       </section>
-    </section>
+    </motion.section>
   );
 };
 

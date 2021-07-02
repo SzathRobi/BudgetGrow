@@ -2,13 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "../../styles/Filters/Filters.module.scss";
 
-function Filters() {
-  const [tab, setTab] = useState(0);
+function Filters({ tab, tabPos, updateTab }) {
+  /*const [tab, setTab] = useState(0);
   const [tabPos, setTabPos] = useState(0);
   const updateTab = (tabNum, tabPosNum) => {
     setTab(tabNum);
     setTabPos(tabPosNum);
-  };
+  };*/
 
   const indicatorStyle = {
     width: tab === 0 ? "3rem" : "5.5rem",

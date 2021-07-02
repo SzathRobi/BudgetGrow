@@ -17,23 +17,21 @@
   position: relative;
 }
 
-.ul {
+.container {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.li {
-}
-
 .navBtn {
-  padding: 0.7rem 2rem;
-  width: 6.5rem;
-  height: 3rem;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: $color-darkest;
   /*border: 2px solid $color-secondary;*/
-  border-radius: 0.7rem;
   color: $color-secondary-support;
   /*box-shadow: 5px 5px 14px #000, 
               -2px -3px 6px #575757,

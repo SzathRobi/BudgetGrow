@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../../../styles/Total/Circular.module.scss";
 
-function Circular({ total = 400, current = 100 }) {
-  let percent = (current / total) * 100;
+function Circular({ settings }) {
+  let percent = (settings.current / settings.income) * 100;
   let barPercent = percent * 5;
 
   let reversedPercent = 500 - barPercent;
@@ -17,8 +17,8 @@ function Circular({ total = 400, current = 100 }) {
         <svg>
           <circle style={circleStyle} cx="90" cy="90" r="80"></circle>
         </svg>
-        <p className={styles.current}>{current}$</p>
-        <p className={styles.counter}>{percent}%</p>
+        <p className={styles.current}>{settings.current}$</p>
+        <p className={styles.percent}>{percent}%</p>
       </div>
     </div>
   );
