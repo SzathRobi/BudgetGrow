@@ -29,11 +29,13 @@ const Update = ({ cookies, settings }) => {
   const transaction_query = router.query;
   const [transaction, setTransaction] = useState(null);
 
+  const [origiToggleChecked, setOrigiToggleChecked] = useState(true);
   const [toggleChecked, setToggleChecked] = useState(true);
   const updateToggleChecked = () => setToggleChecked(!toggleChecked);
 
   const [title, setTitle] = useState("");
   const updateTitle = (event) => setTitle(event.target.value);
+  const [origiAmount, setOrigiAmount] = useState(null);
   const [amount, setAmount] = useState("");
   const updateAmount = (event) => setAmount(event.target.value);
 
@@ -49,13 +51,27 @@ const Update = ({ cookies, settings }) => {
         .then((response) => {
           setTransaction(response.data);
           setTitle(response.data.title);
+          setOrigiAmount(response.data.amount);
           setAmount(response.data.amount);
+          setOrigiToggleChecked(response.data.income);
           setToggleChecked(response.data.income);
         });
     } catch (error) {
       console.log(error);
     }
   }, []);
+
+  const updateSettings = (newCurrent) =>
+    axios
+      .put(`http://localhost:1337/settings/${settings[0].id}`, newCurrent, {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${cookies.jwt}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
 
   const updateItem = (event) => {
     event.preventDefault();
@@ -67,34 +83,35 @@ const Update = ({ cookies, settings }) => {
         user: JSON.parse(cookies.user),
       };
 
-      if (amount !== newTransaction.amount) {
-        let newAmount =
-          Number(amount) > newTransaction.amount
-            ? Number(amount) + newTransaction.amount
-            : Number(amount) - newTransaction.amount;
+      let newCurrent = {
+        current: null,
+      };
 
-        const newCurrent = {
-          current: toggleChecked
-            ? (settings[0].current -= newAmount)
-            : (settings[0].current += newAmount),
-        };
+      //check if user changed income
+      if (toggleChecked === origiToggleChecked) {
+        //true => check amount is changed
+        if (origiAmount !== newTransaction.amount) {
+          //if changed do some math magic
+          let difference = newTransaction.amount - origiAmount;
 
-        axios
-          .put(
-            /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-            `http://localhost:1337/settings/${settings[0].id}`,
-            newCurrent,
-            {
-              headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${cookies.jwt}`,
-              },
-            }
-          )
-          .then((response) => {
-            console.log(response);
-          });
+          console.log("difference:", difference);
+
+          (newCurrent.current = toggleChecked
+            ? (settings[0].current += difference)
+            : (settings[0].current -= difference)),
+            console.log(newCurrent);
+        }
+        updateSettings(newCurrent);
       }
+      //income changed
+      else {
+        (newCurrent.current = toggleChecked
+          ? (settings[0].current += newTransaction.amount)
+          : (settings[0].current -= newTransaction.amount)),
+          console.log("newCurrent:", newCurrent);
+      }
+
+      updateSettings(newCurrent);
 
       axios
         .put(

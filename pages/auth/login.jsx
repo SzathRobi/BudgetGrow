@@ -31,7 +31,7 @@ function login() {
       );
 
       const loginResponse = await login.json();
-      console.log(loginResponse);
+      //console.log(loginResponse);
 
       nookies.set(null, "jwt", loginResponse.jwt, {
         maxAge: 30 * 24 * 60 * 60,
