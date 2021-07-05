@@ -8,7 +8,7 @@ import Input from "../../comps/Controls/Input";
 import Button from "../../comps/Controls/Button";
 import styles from "../../styles/auth/Login.module.scss";
 
-function login() {
+function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const updateState = (type, event) => {
@@ -67,6 +67,7 @@ function login() {
         />
         <Input
           labelText="Password"
+          type="password"
           value={password}
           handleChage={(event) => updateState(setPassword, event)}
         />
@@ -79,4 +80,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

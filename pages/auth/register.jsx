@@ -7,7 +7,7 @@ import Input from "../../comps/Controls/Input";
 import styles from "../../styles/auth/Register.module.scss";
 import Button from "../../comps/Controls/Button";
 
-function register() {
+function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -75,11 +75,13 @@ function register() {
         />
         <Input
           labelText="Password"
+          type="password"
           value={password}
           handleChage={(event) => updateState(setPassword, event)}
         />
         <Input
           labelText="Confirm Password"
+          type="password"
           value={password}
           handleChage={(event) => updateState(setPasswordChecked, event)}
         />
@@ -89,4 +91,4 @@ function register() {
   );
 }
 
-export default register;
+export default Register;

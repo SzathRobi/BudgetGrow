@@ -112,6 +112,14 @@
   margin-left: 0.5rem;
 }
 
+.error_page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

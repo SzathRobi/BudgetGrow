@@ -12,7 +12,7 @@ export async function getServerSideProps(ctx) {
   };
 }
 
-function create_settings({ cookies }) {
+function Create_settings({ cookies }) {
   const router = useRouter();
 
   const [income, setIncome] = useState("");
@@ -40,7 +40,7 @@ function create_settings({ cookies }) {
       .then((response) => {
         // Handle success.
 
-        Router.push("/");
+        router.push("/");
         // Check response in console
         console.log("RESPONSE:", response);
         console.log("Well done!");
@@ -85,4 +85,4 @@ function create_settings({ cookies }) {
   );
 }
 
-export default create_settings;
+export default Create_settings;

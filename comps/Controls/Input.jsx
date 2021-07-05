@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../../styles/controls/Input.module.scss";
 
-function Input({ labelText = "testText", value, handleChage }) {
+function Input({ labelText = "testText", type = "text", value, handleChage }) {
   const [focused, setFocused] = useState(false);
   const focusIn = () => setFocused(true);
   const focusOut = () => setFocused(false);
@@ -21,7 +21,7 @@ function Input({ labelText = "testText", value, handleChage }) {
         onChange={handleChage}
         onFocus={focusIn}
         onBlur={focusOut}
-        type="text"
+        type={type}
       />
     </label>
   );
