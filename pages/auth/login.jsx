@@ -1,14 +1,20 @@
 import axios from "axios";
 import Router from "next/router";
+import Link from "next/link";
 import { setCookie } from "nookies";
 import nookies from "nookies";
 import { useState } from "react";
-import styles from "../../styles/auth/Login.module.css";
+import Input from "../../comps/Controls/Input";
+import Button from "../../comps/Controls/Button";
+import styles from "../../styles/auth/Login.module.scss";
 
 function login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const updateState = (type, event) => type(event.target.value);
+  const updateState = (type, event) => {
+    type(event.target.value);
+    console.log(event.target.value);
+  };
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -48,22 +54,26 @@ function login() {
       console.log(error);
     }
   }
-
   return (
     <section className={styles.login}>
       <form
         onSubmit={(event) => handleLogin(event)}
         className={styles.login_form}
       >
-        <input
-          onChange={(event) => updateState(setIdentifier, event)}
-          type="text"
+        <Input
+          labelText="Username"
+          value={identifier}
+          handleChage={(event) => updateState(setIdentifier, event)}
         />
-        <input
-          onChange={(event) => updateState(setPassword, event)}
-          type="password"
+        <Input
+          labelText="Password"
+          value={password}
+          handleChage={(event) => updateState(setPassword, event)}
         />
-        <button>LOGIN</button>
+        <Button text="LOGIN" />
+        <Link href="/auth/register">
+          <a>If you do not have an account please click here to register</a>
+        </Link>
       </form>
     </section>
   );

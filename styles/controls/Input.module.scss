@@ -1,0 +1,25 @@
+@import "../utility/variables.scss";
+
+.label {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.label p,
+.label input {
+  font-size: 1.1rem;
+}
+
+.label p {
+  color: $color-secondary;
+}
+
+.input {
+  @include input;
+}
+
+.label_text {
+  position: relative;
+  top: 0.7rem;
+  left: 0.2rem;
+}

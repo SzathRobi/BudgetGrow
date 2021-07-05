@@ -1,0 +1,11 @@
+@import "../utility/variables.scss";
+
+.btn {
+  padding: 0.5rem 2rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  background-color: $color-secondary;
+  box-shadow: 0 0 8px $color-secondary-support;
+  position: relative;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+}

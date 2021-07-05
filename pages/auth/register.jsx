@@ -3,12 +3,15 @@ import Router from "next/router";
 import { setCookie } from "nookies";
 import nookies from "nookies";
 import { useState, useEffect } from "react";
-import styles from "../../styles/auth/Register.module.css";
+import Input from "../../comps/Controls/Input";
+import styles from "../../styles/auth/Register.module.scss";
+import Button from "../../comps/Controls/Button";
 
 function register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordChecked, setPasswordChecked] = useState("");
   const updateState = (type, event) => type(event.target.value);
 
   useEffect(() => {
@@ -60,26 +63,27 @@ function register() {
   return (
     <section className={styles.register}>
       <form onSubmit={() => register(event)} className={styles.register_form}>
-        email
-        <input
-          type="text"
+        <Input
+          labelText="Email"
           value={email}
-          onChange={(event) => updateState(setEmail, event)}
+          handleChage={(event) => updateState(setEmail, event)}
         />
-        username
-        <input
-          type="text"
+        <Input
+          labelText="Username"
           value={username}
-          onChange={(event) => updateState(setUsername, event)}
+          handleChage={(event) => updateState(setUsername, event)}
         />
-        password
-        <input
-          type="password"
+        <Input
+          labelText="Password"
           value={password}
-          onChange={(event) => updateState(setPassword, event)}
+          handleChage={(event) => updateState(setPassword, event)}
         />
-        <input type="password" />
-        <button>REGISTER</button>
+        <Input
+          labelText="Confirm Password"
+          value={password}
+          handleChage={(event) => updateState(setPasswordChecked, event)}
+        />
+        <Button text="REGISTER" />
       </form>
     </section>
   );
