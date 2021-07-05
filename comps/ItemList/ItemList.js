@@ -6,6 +6,7 @@ import styles from "../../styles/ItemsList/ItemList.module.scss";
 
 const ItemList = ({
   cookies,
+  settings,
   tab,
   transactions = [],
   transaction_income,
@@ -19,6 +20,7 @@ const ItemList = ({
             <ListItem
               key={transaction.id}
               cookies={cookies}
+              settings={settings}
               transaction={transaction}
             />
           ))}
@@ -27,6 +29,7 @@ const ItemList = ({
             <ListItem
               key={transaction.id}
               cookies={cookies}
+              settings={settings}
               transaction={transaction}
             />
           ))}
@@ -35,6 +38,7 @@ const ItemList = ({
             <ListItem
               key={transaction.id}
               cookies={cookies}
+              settings={settings}
               transaction={transaction}
             />
           ))}

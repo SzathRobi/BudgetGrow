@@ -9,15 +9,22 @@ import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
-
+  const settingResponse = await fetch("http://localhost:1337/settings", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${cookies.jwt}`,
+    },
+  });
+  const settings = await settingResponse.json();
   return {
     props: {
-      cookies: cookies,
+      cookies,
+      settings,
     },
   };
 }
 
-const Update = ({ cookies }) => {
+const Update = ({ cookies, settings }) => {
   const router = useRouter();
   const transaction_query = router.query;
   const [transaction, setTransaction] = useState(null);
@@ -59,6 +66,35 @@ const Update = ({ cookies }) => {
         income: toggleChecked,
         user: JSON.parse(cookies.user),
       };
+
+      if (amount !== newTransaction.amount) {
+        let newAmount =
+          Number(amount) > newTransaction.amount
+            ? Number(amount) + newTransaction.amount
+            : Number(amount) - newTransaction.amount;
+
+        const newCurrent = {
+          current: toggleChecked
+            ? (settings[0].current -= newAmount)
+            : (settings[0].current += newAmount),
+        };
+
+        axios
+          .put(
+            /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
+            `http://localhost:1337/settings/${settings[0].id}`,
+            newCurrent,
+            {
+              headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${cookies.jwt}`,
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+          });
+      }
 
       axios
         .put(

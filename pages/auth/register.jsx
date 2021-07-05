@@ -7,7 +7,7 @@ import styles from "../../styles/auth/Register.module.css";
 
 function register() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("kelekótya");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const updateState = (type, event) => type(event.target.value);
 
@@ -30,24 +30,10 @@ function register() {
       password,
     };
 
-    const newSetting = {
-      income: 0,
-      expense: 0,
-      current: 0,
-    };
-
-    let token = null;
-
     axios
       .post("http://localhost:1337/auth/local/register", newUser)
       .then((response) => {
         // Handle success.
-        axios.post("http://localhost:1337/auth/local/settings", newSetting, {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${response.data.jwt}`,
-          },
-        });
 
         nookies.set(null, "jwt", response.data.jwt, {
           maxAge: 1 * 24 * 60 * 60, // 1 x 12 x 60 x 60 -> 12óra
@@ -58,7 +44,7 @@ function register() {
           path: "/",
         });
 
-        Router.push("/");
+        Router.push("/auth/create_settings");
         // Check response in console
         console.log("RESPONSE:", response);
         console.log("Well done!");

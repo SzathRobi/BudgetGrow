@@ -5,12 +5,7 @@ import styles from "../../styles/ItemsList/ListItem.module.scss";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const ListItem = ({ transaction, cookies }) => {
-  /* let formattedDate = new Date(transaction.date)
-  formattedDate.toLocaleTimeString()
-  console.log(formattedDate)
-*/
-
+const ListItem = ({ transaction, cookies, settings }) => {
   const router = useRouter();
 
   const indicatorColor = {
@@ -27,14 +22,45 @@ const ListItem = ({ transaction, cookies }) => {
 
   const deleteItem = () => {
     try {
-      axios.delete(`http://localhost:1337/transactions/${transaction.id}`, {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${cookies.jwt}`,
-        },
-      });
-      console.log("item succesfully deleted");
-      router.reload();
+      //update current money before deleting item
+
+      const newCurrent = {
+        current: transaction.income
+          ? (settings.current -= transaction.amount)
+          : (settings.current += transaction.amount),
+      };
+
+      axios
+        .put(
+          /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
+          `http://localhost:1337/settings/${settings.id}`,
+          newCurrent,
+          {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${cookies.jwt}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        });
+
+      //delete item
+
+      axios
+        .delete(`http://localhost:1337/transactions/${transaction.id}`, {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        })
+        .then((response) => {
+          //success + pagereload for ui update
+          console.log("item succesfully deleted");
+          console.log(response);
+          router.reload();
+        });
     } catch (error) {
       console.log(error);
     }

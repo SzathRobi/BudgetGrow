@@ -92,6 +92,7 @@ export default function Home({ cookies, transactions, settings }) {
         <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
         <ItemList
           cookies={cookies}
+          settings={settings[0]}
           tab={tab}
           transactions={transactions}
           transaction_income={transaction_income}

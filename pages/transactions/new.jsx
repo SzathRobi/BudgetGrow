@@ -9,14 +9,23 @@ import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
+  const settingsResponse = await fetch("http://localhost:1337/settings", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${cookies.jwt}`,
+    },
+  });
+  const settings = await settingsResponse.json();
   return {
     props: {
-      cookies: cookies,
+      cookies,
+      settings,
     },
   };
 }
 
-const New = ({ cookies }) => {
+const New = ({ cookies, settings }) => {
+  const settingId = settings[0].id;
   const router = useRouter();
   const [toggleChecked, setToggleChecked] = useState(true);
   const updateToggleChecked = () => setToggleChecked(!toggleChecked);
@@ -29,6 +38,30 @@ const New = ({ cookies }) => {
   const createItem = (event) => {
     event.preventDefault();
     try {
+      //put
+
+      const newCurrent = {
+        current: toggleChecked
+          ? (settings[0].current += Number(amount))
+          : (settings[0].current -= Number(amount)),
+      };
+
+      axios
+        .put(
+          /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
+          `http://localhost:1337/settings/${settingId}`,
+          newCurrent,
+          {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${cookies.jwt}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        });
+
       const newTransaction = {
         title: title,
         amount: Number(amount),

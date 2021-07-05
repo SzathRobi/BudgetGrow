@@ -14,6 +14,7 @@ function Settings() {
     >
       <SettingLink title="MONTHLY INCOME" href="settings/income" />
       <SettingLink title="MONTHLY EXPENSE" href="settings/expense" />
+      <SettingLink title="CURRENT MONEY" href="settings/current" />
       <SettingLink title="HOME" href="/" />
     </motion.section>
   );

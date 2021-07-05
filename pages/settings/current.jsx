@@ -21,27 +21,27 @@ export async function getServerSideProps(ctx) {
   };
 }
 
-function Expense({ cookies, settings }) {
+function Current({ cookies, settings }) {
   const router = useRouter();
   const goBack = () => router.back();
   const settingId = settings[0].id;
   console.log("settings:", settings);
 
-  const [updatedExpense, setUpdatedExpense] = useState();
-  const updateExpense = (event) => setUpdatedExpense(event.target.value);
+  const [updatedCurrent, setUpdatedCurrent] = useState();
+  const updateCurrent = (event) => setUpdatedCurrent(event.target.value);
 
   const handleUpdate = (event) => {
     event.preventDefault();
     try {
-      const newExpense = {
-        expense: updatedExpense,
+      const newCurrent = {
+        current: updatedCurrent,
       };
 
       axios
         .put(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
           `http://localhost:1337/settings/${settingId}`,
-          newExpense,
+          newCurrent,
           {
             headers: {
               "Content-type": "application/json",
@@ -63,8 +63,8 @@ function Expense({ cookies, settings }) {
       <button onClick={goBack}>BACK</button>
       <form onSubmit={(event) => handleUpdate(event)}>
         <div className="">
-          <h2>Monthly expense:</h2>
-          <input onChange={(event) => updateExpense(event)} type="text" />
+          <h2>Current money:</h2>
+          <input onChange={(event) => updateCurrent(event)} type="text" />
         </div>
         <button type="submit">UPDATE</button>
       </form>
@@ -73,4 +73,4 @@ function Expense({ cookies, settings }) {
   );
 }
 
-export default Expense;
+export default Current;

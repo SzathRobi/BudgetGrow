@@ -3,6 +3,7 @@ import styles from "../../../styles/Total/Circular.module.scss";
 
 function Circular({ settings }) {
   let percent = (settings.current / settings.income) * 100;
+  let sexyPercent = percent.toFixed(2);
   let barPercent = percent * 5;
 
   let reversedPercent = 500 - barPercent;
@@ -18,7 +19,7 @@ function Circular({ settings }) {
           <circle style={circleStyle} cx="90" cy="90" r="80"></circle>
         </svg>
         <p className={styles.current}>{settings.current}$</p>
-        <p className={styles.percent}>{percent}%</p>
+        <p className={styles.percent}>{sexyPercent}%</p>
       </div>
     </div>
   );
