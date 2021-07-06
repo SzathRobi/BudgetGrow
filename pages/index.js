@@ -15,19 +15,17 @@ import Filters from "../comps/Filters/Filters";
 import Button from "../comps/Controls/Button";
 
 export async function getServerSideProps(ctx) {
+  const API_URL = process.env.API_URL || "http://localhost:1337";
   const cookies = nookies.get(ctx);
-  const transactionResponse = await fetch(
-    "http://localhost:1337/transactions",
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${cookies.jwt}`,
-      },
-    }
-  );
+  const transactionResponse = await fetch(`${API_URL}/transactions`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${cookies.jwt}`,
+    },
+  });
   const transactions = await transactionResponse.json();
 
-  const settingResponse = await fetch("http://localhost:1337/settings", {
+  const settingResponse = await fetch(`${API_URL}/settings`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${cookies.jwt}`,
@@ -39,11 +37,12 @@ export async function getServerSideProps(ctx) {
       cookies: cookies,
       transactions: transactions,
       settings: settings,
+      API_URL,
     },
   };
 }
 
-export default function Home({ cookies, transactions, settings }) {
+export default function Home({ cookies, transactions, settings, API_URL }) {
   const router = useRouter();
 
   const [user, setUser] = useState(null);
@@ -58,19 +57,12 @@ export default function Home({ cookies, transactions, settings }) {
     }
   }, []);
 
-  //  const user = JSON.parse(cookies.user);
-  // const user = JSON.parse(cookies.user);
-  // console.log(user);
-
   const [tab, setTab] = useState(0);
   const [tabPos, setTabPos] = useState(0);
   const updateTab = (tabNum, tabPosNum) => {
     setTab(tabNum);
     setTabPos(tabPosNum);
   };
-
-  /*const transaction_income = null;
-  const transaction_expense = null;*/
 
   const transaction_income =
     user && transactions.filter((transaction) => transaction.income);

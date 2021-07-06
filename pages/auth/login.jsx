@@ -9,6 +9,7 @@ import Button from "../../comps/Controls/Button";
 import styles from "../../styles/auth/Login.module.scss";
 
 function Login() {
+  const API_URL = process.env.API_URL || "http://localhost:1337";
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const updateState = (type, event) => {
@@ -24,17 +25,14 @@ function Login() {
         password: password,
       };
 
-      const login = await fetch(
-        process.env.PUBLIC_api_url || "http://localhost:1337/auth/local",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginInfo),
-        }
-      );
+      const login = await fetch(`${API_URL}/auth/local`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
 
       const loginResponse = await login.json();
       //console.log(loginResponse);

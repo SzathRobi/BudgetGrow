@@ -8,8 +8,9 @@ import axios from "axios";
 import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
+  const API_URL = process.env.API_URL || "http://localhost:1337";
   const cookies = nookies.get(ctx);
-  const settingsResponse = await fetch("http://localhost:1337/settings", {
+  const settingsResponse = await fetch(`${API_URL}/settings`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${cookies.jwt}`,
@@ -20,11 +21,12 @@ export async function getServerSideProps(ctx) {
     props: {
       cookies,
       settings,
+      API_URL,
     },
   };
 }
 
-const New = ({ cookies, settings }) => {
+const New = ({ cookies, settings, API_URL }) => {
   const settingId = settings[0].id;
   const router = useRouter();
   const [toggleChecked, setToggleChecked] = useState(true);
@@ -49,7 +51,7 @@ const New = ({ cookies, settings }) => {
       axios
         .put(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-          `http://localhost:1337/settings/${settingId}`,
+          `${API_URL}/settings/${settingId}`,
           newCurrent,
           {
             headers: {
@@ -72,7 +74,7 @@ const New = ({ cookies, settings }) => {
       axios
         .post(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-          "http://localhost:1337/transactions",
+          `${API_URL}/transactions`,
           newTransaction,
           {
             headers: {

@@ -15,6 +15,8 @@ export async function getServerSideProps(ctx) {
 function Create_settings({ cookies }) {
   const router = useRouter();
 
+  const API_URL = process.env.API_URL || "http://localhost:1337";
+
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
   const [current, setCurrent] = useState("");
@@ -31,7 +33,7 @@ function Create_settings({ cookies }) {
     };
 
     axios
-      .post("http://localhost:1337/settings", newSetting, {
+      .post(`${API_URL}/settings`, newSetting, {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${cookies.jwt}`,

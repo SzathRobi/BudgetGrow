@@ -8,8 +8,9 @@ import axios from "axios";
 import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
+  const API_URL = process.env.API_URL || "http://localhost:1337";
   const cookies = nookies.get(ctx);
-  const settingResponse = await fetch("http://localhost:1337/settings", {
+  const settingResponse = await fetch(`${API_URL}/settings`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${cookies.jwt}`,
@@ -20,11 +21,12 @@ export async function getServerSideProps(ctx) {
     props: {
       cookies,
       settings,
+      API_URL,
     },
   };
 }
 
-const Update = ({ cookies, settings }) => {
+const Update = ({ cookies, settings, API_URL }) => {
   const router = useRouter();
   const transaction_query = router.query;
   const [transaction, setTransaction] = useState(null);
@@ -42,7 +44,7 @@ const Update = ({ cookies, settings }) => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:1337/transactions/${transaction_query.id}`, {
+        .get(`${API_URL}/transactions/${transaction_query.id}`, {
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${cookies.jwt}`,
@@ -63,7 +65,7 @@ const Update = ({ cookies, settings }) => {
 
   const updateSettings = (newCurrent) =>
     axios
-      .put(`http://localhost:1337/settings/${settings[0].id}`, newCurrent, {
+      .put(`${API_URL}/settings/${settings[0].id}`, newCurrent, {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${cookies.jwt}`,
@@ -116,7 +118,7 @@ const Update = ({ cookies, settings }) => {
       axios
         .put(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-          `http://localhost:1337/transactions/${transaction_query.id}`,
+          `${API_URL}/transactions/${transaction_query.id}`,
           newTransaction,
           {
             headers: {
