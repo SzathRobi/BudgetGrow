@@ -71,7 +71,9 @@ export default function Home({ cookies, transactions, settings, API_URL }) {
     user && transactions.filter((transaction) => !transaction.income);
 
   return !user ? (
-    <h1>fucked up</h1>
+    <section className={styles.error_page}>
+      <Button text={"LOGIN"} handleClick={() => router.push("/auth/login")} />
+    </section>
   ) : (
     <motion.section
       initial={{ x: "-100%" }}
