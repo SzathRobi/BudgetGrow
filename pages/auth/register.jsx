@@ -14,20 +14,11 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordChecked, setPasswordChecked] = useState("");
   const updateState = (type, event) => type(event.target.value);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(
-      "EMAIL:",
-      email,
-      " USERNAME:",
-      username,
-      " PASSWORD:",
-      password
-    );
-  }, [email, username, password]);
-
-  const register = (event) => {
+  const register = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const newUser = {
       email,
       username,
@@ -48,12 +39,10 @@ function Register() {
           path: "/",
         });
 
+        setLoading(false);
         Router.push("/auth/create_settings");
         // Check response in console
         console.log("RESPONSE:", response);
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
       })
       .catch((error) => {
         // Handle error.
@@ -86,7 +75,7 @@ function Register() {
           value={password}
           handleChage={(event) => updateState(setPasswordChecked, event)}
         />
-        <Button text="REGISTER" />
+        <Button text={loading ? "LOADING" : "REGISTER"} />
       </form>
     </section>
   );

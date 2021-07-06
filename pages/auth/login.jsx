@@ -16,9 +16,11 @@ function Login() {
     type(event.target.value);
     console.log(event.target.value);
   };
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(event) {
     event.preventDefault();
+    setLoading(true);
     try {
       const loginInfo = {
         identifier: identifier,
@@ -46,6 +48,7 @@ function Login() {
         path: "/",
       });
 
+      setLoading(false);
       Router.push("/");
     } catch (error) {
       // Handle errors
