@@ -27,7 +27,7 @@ function Login() {
         password: password,
       };
 
-      const login = await fetch(`${API_URL}`, {
+      const login = await fetch(`${API_URL}/auth/local`, {
         method: "POST",
         headers: {
           Accept: "application/json",
