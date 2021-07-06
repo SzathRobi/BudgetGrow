@@ -8,7 +8,7 @@ import styles from "../../styles/auth/Register.module.scss";
 import Button from "../../comps/Controls/Button";
 
 function Register() {
-  const API_URL = process.env.API_URL || "http://localhost:1337";
+  const API_URL = "https://budgetgrow.herokuapp.com";
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

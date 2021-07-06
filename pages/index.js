@@ -15,7 +15,7 @@ import Filters from "../comps/Filters/Filters";
 import Button from "../comps/Controls/Button";
 
 export async function getServerSideProps(ctx) {
-  const API_URL = process.env.API_URL || "http://localhost:1337";
+  const API_URL = "https://budgetgrow.herokuapp.com";
   const cookies = nookies.get(ctx);
   const transactionResponse = await fetch(`${API_URL}/transactions`, {
     method: "GET",
@@ -42,7 +42,7 @@ export async function getServerSideProps(ctx) {
   };
 }
 
-export default function Home({ cookies, transactions, settings, API_URL }) {
+export default function Home({ cookies, transactions, settings }) {
   const router = useRouter();
 
   const [user, setUser] = useState(null);

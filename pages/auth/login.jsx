@@ -9,7 +9,7 @@ import Button from "../../comps/Controls/Button";
 import styles from "../../styles/auth/Login.module.scss";
 
 function Login() {
-  const API_URL = process.env.API_URL; /*|| "http://localhost:1337"*/
+  const API_URL = "https://budgetgrow.herokuapp.com";
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const updateState = (type, event) => {

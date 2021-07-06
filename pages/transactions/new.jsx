@@ -8,7 +8,7 @@ import axios from "axios";
 import nookies from "nookies";
 
 export async function getServerSideProps(ctx) {
-  const API_URL = process.env.API_URL || "http://localhost:1337";
+  const API_URL = "https://budgetgrow.herokuapp.com";
   const cookies = nookies.get(ctx);
   const settingsResponse = await fetch(`${API_URL}/settings`, {
     method: "GET",

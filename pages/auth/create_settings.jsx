@@ -15,7 +15,7 @@ export async function getServerSideProps(ctx) {
 function Create_settings({ cookies }) {
   const router = useRouter();
 
-  const API_URL = process.env.API_URL || "http://localhost:1337";
+  const API_URL = "https://budgetgrow.herokuapp.com";
 
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
