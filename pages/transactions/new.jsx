@@ -29,6 +29,7 @@ export async function getServerSideProps(ctx) {
 const New = ({ cookies, settings, API_URL }) => {
   const settingId = settings[0].id;
   const router = useRouter();
+
   const [toggleChecked, setToggleChecked] = useState(true);
   const updateToggleChecked = () => setToggleChecked(!toggleChecked);
 

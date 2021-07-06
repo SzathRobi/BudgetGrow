@@ -46,6 +46,7 @@ export default function Home({ cookies, transactions, settings, API_URL }) {
   const router = useRouter();
 
   const [user, setUser] = useState(null);
+  console.log("transactions:", transactions);
   console.log("settings:", settings);
 
   useEffect(() => {
@@ -69,7 +70,9 @@ export default function Home({ cookies, transactions, settings, API_URL }) {
   const transaction_expense =
     user && transactions.filter((transaction) => !transaction.income);
 
-  return (
+  return !user ? (
+    <h1>fucked up</h1>
+  ) : (
     <motion.section
       initial={{ x: "-100%" }}
       animate={{ x: "0" }}
@@ -102,14 +105,15 @@ export default function Home({ cookies, transactions, settings, API_URL }) {
         <meta name="theme-color" content="#317EFB" />
       </Head>
 
-      {!user ? (
+      {
+        /*!user ? (
         <section className={styles.error_page}>
           <Button
             text={"LOGIN"}
             handleClick={() => router.push("/auth/login")}
           />
         </section>
-      ) : (
+      ) : (*/
         <main className={styles.main}>
           <Circular settings={settings[0]} />
           <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
@@ -122,7 +126,7 @@ export default function Home({ cookies, transactions, settings, API_URL }) {
             transaction_expense={transaction_expense}
           />
         </main>
-      )}
+      }
     </motion.section>
   );
 }
