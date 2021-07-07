@@ -1,4 +1,5 @@
 import axios from "axios";
+import { motion } from "framer-motion";
 import Router from "next/router";
 import Link from "next/link";
 import { setCookie } from "nookies";
@@ -56,7 +57,12 @@ function Login() {
     }
   }
   return (
-    <section className={styles.login}>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={styles.login}
+    >
       <form
         onSubmit={(event) => handleLogin(event)}
         className={styles.login_form}
@@ -77,7 +83,7 @@ function Login() {
           <a>If you do not have an account please click here to register</a>
         </Link>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

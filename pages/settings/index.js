@@ -1,21 +1,38 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
+import nookies, { destroyCookie } from "nookies";
 import SettingLink from "../../comps/SettingCard/SettingLink";
 import styles from "../../styles/Settings/Settings.module.scss";
 
-function Settings() {
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx);
+
+  return {
+    props: {
+      cookies,
+    },
+  };
+}
+
+function Settings({ cookies }) {
+  const logut = () => {
+    destroyCookie(null, "user");
+    destroyCookie(null, "jwt");
+    console.log("logged out");
+  };
+
   return (
     <motion.section
       className={styles.settings}
-      initial={{ x: "100%" }}
-      animate={{ x: "0" }}
-      exit={{ x: "100%" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ type: "tween" }}
     >
-      <SettingLink title="MONTHLY INCOME" href="settings/income" />
-      <SettingLink title="MONTHLY EXPENSE" href="settings/expense" />
-      <SettingLink title="CURRENT MONEY" href="settings/current" />
+      <SettingLink title="MONTHLY INCOME" href="/settings/income" />
+      <SettingLink title="MONTHLY EXPENSE" href="/settings/expense" />
+      <SettingLink title="CURRENT MONEY" href="/settings/current" />
       <SettingLink title="HOME" href="/" />
+      <SettingLink title="LOGOUT" href="/" handleClick={logut} />
     </motion.section>
   );
 }

@@ -11,8 +11,9 @@
 }
 
 .login_form {
+  max-width: 350px;
   padding: 2rem;
-  background-color: $color-darkest;
+  background-color: #2a2a2a;
   display: flex;
   flex-direction: column;
   border-radius: 0.3rem;

@@ -5,11 +5,18 @@
   height: 100vh;
   position: absolute;
   background-color: $color-darkest;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .newForm {
+  width: 80%;
   padding: 1rem;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formSection {

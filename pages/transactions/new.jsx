@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import ToggleBtn from "../../comps/AddItem/ToggleBtn";
+import Input from "../../comps/Controls/Input";
+import Button from "../../comps/Controls/Button";
 import styles from "../../styles/AddItem/AddItem.module.scss";
 import { useState } from "react";
 import Link from "next/link";
@@ -95,33 +97,23 @@ const New = ({ cookies, settings, API_URL }) => {
 
   return (
     <motion.section
-      initial={{ x: "100vw" }}
-      animate={{ x: "0" }}
-      exit={{ x: "100vw" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ type: "tween" }}
       className={styles.new}
     >
       <form className={styles.newForm} onSubmit={(event) => createItem(event)}>
-        <section className={styles.formSection}>
-          <h3>Title</h3>
-          <input
-            value={title}
-            onChange={(event) => {
-              updateTitle(event);
-            }}
-            type="text"
-            className={styles.input}
-          />
-        </section>
-        <section className={styles.formSection}>
-          <h3>Amount</h3>
-          <input
-            value={amount}
-            onChange={(event) => updateAmount(event)}
-            type="text"
-            className={styles.input}
-          />
-        </section>
+        <Input
+          labelText="Title"
+          value={title}
+          handleChage={(event) => updateTitle(event)}
+        />
+        <Input
+          labelText="Amount"
+          value={amount}
+          handleChage={(event) => updateAmount(event)}
+        />
         <section className={styles.formSection}>
           <h3>{toggleChecked ? "INCOME" : "EXPENSE"}</h3>
           <ToggleBtn
@@ -129,14 +121,7 @@ const New = ({ cookies, settings, API_URL }) => {
             updateToggleChecked={updateToggleChecked}
           />
         </section>
-        <section>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-          <button type="submit" className={styles.addBtn}>
-            ADD
-          </button>
-        </section>
+        <Button text="ADD" />
       </form>
     </motion.section>
   );

@@ -1,17 +1,18 @@
 @import "../utility/variables.scss";
 
 .filters {
-  width: 100%;
+  width: 20rem;
   margin-bottom: 2rem;
 }
 
 .btn_container {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn {
-  flex: 1;
   padding: 0.2rem 0.8rem;
   background-color: transparent;
   border-radius: 0.7rem;
@@ -27,5 +28,5 @@
   border-radius: 1rem;
   position: absolute;
   bottom: -0.3rem;
-  left: 1.3rem;
+  left: 2.5rem;
 }

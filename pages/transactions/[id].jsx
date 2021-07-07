@@ -138,9 +138,9 @@ const Update = ({ cookies, settings, API_URL }) => {
 
   return (
     <motion.section
-      initial={{ x: "100vw" }}
-      animate={{ x: "0" }}
-      exit={{ x: "100vw" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ type: "tween" }}
       className={styles.new}
     >

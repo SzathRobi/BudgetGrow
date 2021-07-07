@@ -1,4 +1,5 @@
 import axios from "axios";
+import { motion } from "framer-motion";
 import nookies from "nookies";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -54,7 +55,11 @@ function Create_settings({ cookies }) {
   };
 
   return (
-    <section>
+    <moiton.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <form onSubmit={(event) => createSettings(event)}>
         <h1>Settings</h1>
         <div>
@@ -83,7 +88,7 @@ function Create_settings({ cookies }) {
         </div>
         <button>OK</button>
       </form>
-    </section>
+    </moiton.section>
   );
 }
 

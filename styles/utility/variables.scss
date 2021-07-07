@@ -1,21 +1,18 @@
-$color-primary: #222;
+$color-primary: #333;
 $color-secondary: #20ffaf;
 $color-secondary-support: #72ffc4;
-$color-darkest: #111;
+$color-darkest: #1a1a1a;
 $color-text: #f4f4f4;
 
 @mixin input {
-  margin: 0.5rem 0;
-  padding: 0.3rem 0.5rem;
-  font-size: 1.1rem;
-  outline: none;
-  border: none;
   width: 100%;
-  height: 2.5rem;
+  padding: 0.5rem;
+  margin: 0.7rem 0;
+  border: none;
   border-radius: 0.2rem;
+  background-color: #222;
   color: $color-text;
-  background: linear-gradient(0deg, #333, #000);
-  box-shadow: 0 0 0 2px #353535, 0 0 0 3px #3e3e3e,
-    inset 0 0 10px rgba(0, 0, 0, 0.5), inset 0 5px 20px rgba(0, 0, 0, 0.5),
-    inset 0 0 15px rgba(0, 0, 0, 0.2);
+  font-size: 1.1rem;
+  font-weight: 200;
+  box-shadow: inset 4px 4px 8px #111, inset -1px -1px 2px #555;
 }

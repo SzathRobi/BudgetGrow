@@ -1,4 +1,6 @@
 import axios from "axios";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import Router from "next/router";
 import { setCookie } from "nookies";
 import nookies from "nookies";
@@ -51,7 +53,12 @@ function Register() {
   };
 
   return (
-    <section className={styles.register}>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={styles.register}
+    >
       <form onSubmit={() => register(event)} className={styles.register_form}>
         <Input
           labelText="Email"
@@ -76,8 +83,11 @@ function Register() {
           handleChage={(event) => updateState(setPasswordChecked, event)}
         />
         <Button text={loading ? "LOADING" : "REGISTER"} />
+        <Link href="/auth/login">
+          <a>If you alredy have an account please click here to login</a>
+        </Link>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

@@ -33,7 +33,7 @@ const ListItem = ({ transaction, cookies, settings }) => {
       axios
         .put(
           /*`${process.env.PUBLIC_API_URL}/transactions` ||*/
-          `http://localhost:1337/settings/${settings.id}`,
+          `https://budgetgrow.herokuapp.com/settings/${settings.id}`,
           newCurrent,
           {
             headers: {
@@ -49,12 +49,15 @@ const ListItem = ({ transaction, cookies, settings }) => {
       //delete item
 
       axios
-        .delete(`http://localhost:1337/transactions/${transaction.id}`, {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${cookies.jwt}`,
-          },
-        })
+        .delete(
+          `https://budgetgrow.herokuapp.com/transactions/${transaction.id}`,
+          {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${cookies.jwt}`,
+            },
+          }
+        )
         .then((response) => {
           //success + pagereload for ui update
           console.log("item succesfully deleted");
