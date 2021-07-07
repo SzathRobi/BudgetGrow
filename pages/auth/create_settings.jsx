@@ -55,7 +55,7 @@ function Create_settings({ cookies }) {
   };
 
   return (
-    <moiton.section
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -88,7 +88,7 @@ function Create_settings({ cookies }) {
         </div>
         <button>OK</button>
       </form>
-    </moiton.section>
+    </motion.section>
   );
 }
 
