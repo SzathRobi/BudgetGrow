@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenSquare } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import BudgetContext from "../../context/budgetContext";
 import styles from "../../styles/ItemsList/ListItem.module.scss";
 import axios from "axios";
 import { useRouter } from "next/router";
 
 const ListItem = ({ transaction, cookies, settings }) => {
   const router = useRouter();
+  const { setNavTabs } = useContext(BudgetContext);
 
   const indicatorColor = {
     backgroundColor: transaction.income ? "green" : "red",
@@ -69,7 +72,10 @@ const ListItem = ({ transaction, cookies, settings }) => {
     }
   };
 
-  const goToUpdate = () => router.push(`/transactions/${transaction.id}`);
+  const goToUpdate = () => {
+    setNavTabs(10);
+    router.push(`/transactions/${transaction.id}`);
+  };
 
   return (
     <motion.section

@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
+import BudgetContext from "../../context/budgetContext";
 import Button from "../../comps/Controls/Button";
 import Input from "../../comps/Controls/Input";
 import ToggleBtn from "../../comps/AddItem/ToggleBtn";
 import styles from "../../styles/AddItem/AddItem.module.scss";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import nookies from "nookies";
@@ -29,6 +29,7 @@ export async function getServerSideProps(ctx) {
 }
 
 const Update = ({ cookies, settings, API_URL }) => {
+  const { setNavTabs } = useContext(BudgetContext);
   const router = useRouter();
   const transaction_query = router.query;
   const [transaction, setTransaction] = useState(null);
@@ -44,6 +45,7 @@ const Update = ({ cookies, settings, API_URL }) => {
   const updateAmount = (event) => setAmount(event.target.value);
 
   useEffect(() => {
+    setNavTabs(10);
     try {
       axios
         .get(`${API_URL}/transactions/${transaction_query.id}`, {

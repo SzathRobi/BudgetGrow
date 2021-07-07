@@ -1,6 +1,6 @@
 import axios from "axios";
 import nookies from "nookies";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export async function getServerSideProps(ctx) {
@@ -24,6 +24,10 @@ export async function getServerSideProps(ctx) {
 }
 
 function Expense({ cookies, settings, API_URL }) {
+  const { setNavTabs } = useContext(BudgetContext);
+  useEffect(() => {
+    setNavTabs(10);
+  }, []);
   const router = useRouter();
   const goBack = () => router.back();
   const settingId = settings[0].id;

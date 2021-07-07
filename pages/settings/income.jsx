@@ -1,7 +1,8 @@
 import axios from "axios";
 import nookies from "nookies";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import BudgetContext from "../../context/budgetContext";
 
 export async function getServerSideProps(ctx) {
   const API_URL = "https://budgetgrow.herokuapp.com";
@@ -24,6 +25,10 @@ export async function getServerSideProps(ctx) {
 }
 
 function Income({ cookies, settings, API_URL }) {
+  const { setNavTabs } = useContext(BudgetContext);
+  useEffect(() => {
+    setNavTabs(10);
+  }, []);
   const router = useRouter();
   const goBack = () => router.back();
   const settingId = settings[0].id;

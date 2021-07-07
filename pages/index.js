@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import nookies from "nookies";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ItemList from "../comps/ItemList/ItemList";
 import Circular from "../comps/Total/progress/Circular";
-import { useBudget } from "../context/budgetContext";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
 import Filters from "../comps/Filters/Filters";
 import Button from "../comps/Controls/Button";
+import BudgetContext from "../context/budgetContext";
 
 export async function getServerSideProps(ctx) {
   const API_URL = "https://budgetgrow.herokuapp.com";
@@ -41,13 +41,13 @@ export async function getServerSideProps(ctx) {
 
 export default function Home({ cookies, transactions, settings }) {
   const router = useRouter();
-  const testContext = useBudget();
-  console.log("testContext is:", testContext);
+  const { setNavTabs } = useContext(BudgetContext);
   const [user, setUser] = useState(null);
   console.log("transactions:", transactions);
   console.log("settings:", settings);
 
   useEffect(() => {
+    setNavTabs(1);
     try {
       setUser(JSON.parse(cookies.user));
     } catch (error) {

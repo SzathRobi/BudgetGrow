@@ -3,11 +3,11 @@ import ToggleBtn from "../../comps/AddItem/ToggleBtn";
 import Input from "../../comps/Controls/Input";
 import Button from "../../comps/Controls/Button";
 import styles from "../../styles/AddItem/AddItem.module.scss";
-import { useState } from "react";
-import Link from "next/link";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import nookies from "nookies";
+import BudgetContext from "../../context/budgetContext";
 
 export async function getServerSideProps(ctx) {
   const API_URL = "https://budgetgrow.herokuapp.com";
@@ -29,6 +29,11 @@ export async function getServerSideProps(ctx) {
 }
 
 const New = ({ cookies, settings, API_URL }) => {
+  const { setNavTabs } = useContext(BudgetContext);
+  useEffect(() => {
+    setNavTabs(2);
+  }, []);
+
   const settingId = settings[0].id;
   const router = useRouter();
 
@@ -89,6 +94,7 @@ const New = ({ cookies, settings, API_URL }) => {
         .then((response) => {
           console.log(response);
           router.push("/");
+          setNavTabs(1);
         });
     } catch (error) {
       console.log(error);

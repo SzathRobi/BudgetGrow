@@ -1,13 +1,5 @@
-import { useReducer, useContext, createContext, useState } from "react";
+import { createContext } from "react";
 
-const BudgetContext = createContext();
-const initialState = {
-  hobo: "loco",
-};
+const BudgetContext = createContext(null);
 
-export const BudgetProvider = ({ children }) => {
-  //const [state, setState] = useState(initialState)
-  return <BudgetContext.Provider>{children}</BudgetContext.Provider>;
-};
-
-export const useBudget = () => useContext(BudgetContext);
+export default BudgetContext;

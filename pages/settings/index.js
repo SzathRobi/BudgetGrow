@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
 import nookies, { destroyCookie } from "nookies";
+import BudgetContext from "../../context/budgetContext";
 import SettingLink from "../../comps/SettingCard/SettingLink";
 import styles from "../../styles/Settings/Settings.module.scss";
 
@@ -16,6 +18,14 @@ export async function getServerSideProps(ctx) {
 
 function Settings({ cookies }) {
   const router = useRouter();
+  const { setNavTabs } = useContext(BudgetContext);
+  useEffect(() => {
+    if (!cookies.jwt) {
+      router.push("/auth/login");
+      return;
+    }
+    setNavTabs(3);
+  }, []);
   const logut = () => {
     destroyCookie(null, "user");
     destroyCookie(null, "jwt");

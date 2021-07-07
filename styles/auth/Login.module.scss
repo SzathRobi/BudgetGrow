@@ -27,3 +27,10 @@
   font-size: 0.9rem;
   color: $color-text;
 }
+
+.error_text {
+  width: 100%;
+  color: $color-text--error;
+  transform: translateY(-0.5rem);
+  font-size: 0.9rem;
+}

@@ -1,6 +1,7 @@
 import ToggleBtn from "./ToggleBtn";
 import styles from "../../styles/AddItem/AddItem.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import BudgetContext from "../../context/budgetContext";
 
 const AddItem = ({
   addItemOpen = false,
@@ -11,6 +12,8 @@ const AddItem = ({
   itemTitle = "",
   updateItemTitle,
 }) => {
+  const { navTabs, setNavTabs } = useContext(BudgetContext);
+
   const modalStyle = {
     width: addItemOpen ? "100vw" : "2rem",
     height: addItemOpen ? "87.5vh" : "2rem",
@@ -23,7 +26,7 @@ const AddItem = ({
         <h3>Title</h3>
         <input
           value={itemTitle}
-          onChange={() => {
+          onChange={(event) => {
             updateItemTitle(event);
           }}
           type="text"
