@@ -5,27 +5,23 @@ import Link from "next/link";
 import { setCookie } from "nookies";
 import nookies from "nookies";
 import { useState } from "react";
-import Input from "../../comps/Controls/Input";
+import { useForm } from "react-hook-form";
+//import Input from "../../comps/Controls/Input";
 import Button from "../../comps/Controls/Button";
 import styles from "../../styles/auth/Login.module.scss";
+import inputStyles from "../../styles/controls/Input.module.scss";
 
 function Login() {
   const API_URL = "https://budgetgrow.herokuapp.com";
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
-  const updateState = (type, event) => {
-    type(event.target.value);
-    console.log(event.target.value);
-  };
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(event) {
-    event.preventDefault();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
     setLoading(true);
     try {
       const loginInfo = {
-        identifier: identifier,
-        password: password,
+        identifier: data.identifier,
+        password: data.password,
       };
 
       const login = await fetch(`${API_URL}/auth/local`, {
@@ -55,7 +51,7 @@ function Login() {
       // Handle errors
       console.log(error);
     }
-  }
+  };
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -63,22 +59,20 @@ function Login() {
       exit={{ opacity: 0 }}
       className={styles.login}
     >
-      <form
-        onSubmit={(event) => handleLogin(event)}
-        className={styles.login_form}
-      >
-        <Input
-          labelText="Username"
-          value={identifier}
-          handleChage={(event) => updateState(setIdentifier, event)}
-        />
-        <Input
-          labelText="Password"
-          type="password"
-          value={password}
-          handleChage={(event) => updateState(setPassword, event)}
-        />
-        <Button text="LOGIN" />
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+        <label className={styles.label}>
+          <p>Username</p>
+          <input {...register("identifier", { required: true })} />
+        </label>
+        <label className={styles.label}>
+          <p className={inputStyles.label_text}>Password</p>
+          <input
+            type="password"
+            {...register("password", { required: true })}
+          />
+        </label>
+
+        <Button text={loading ? "LOADING" : "LOGIN"} />
         <Link href="/auth/register">
           <a>If you do not have an account please click here to register</a>
         </Link>

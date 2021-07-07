@@ -33,3 +33,11 @@ button {
 ul {
   list-style: none;
 }
+
+input {
+  @include input;
+}
+
+label p {
+  color: $color-secondary;
+}

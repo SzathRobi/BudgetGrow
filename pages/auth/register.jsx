@@ -4,6 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { setCookie } from "nookies";
 import nookies from "nookies";
+import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import Input from "../../comps/Controls/Input";
 import styles from "../../styles/auth/Register.module.scss";
@@ -11,20 +12,15 @@ import Button from "../../comps/Controls/Button";
 
 function Register() {
   const API_URL = "https://budgetgrow.herokuapp.com";
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordChecked, setPasswordChecked] = useState("");
-  const updateState = (type, event) => type(event.target.value);
   const [loading, setLoading] = useState(false);
 
-  const register = async (event) => {
-    event.preventDefault();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
     setLoading(true);
     const newUser = {
-      email,
-      username,
-      password,
+      email: data.email,
+      username: data.username,
+      password: data.password,
     };
 
     axios
@@ -59,29 +55,22 @@ function Register() {
       exit={{ opacity: 0 }}
       className={styles.register}
     >
-      <form onSubmit={() => register(event)} className={styles.register_form}>
-        <Input
-          labelText="Email"
-          value={email}
-          handleChage={(event) => updateState(setEmail, event)}
-        />
-        <Input
-          labelText="Username"
-          value={username}
-          handleChage={(event) => updateState(setUsername, event)}
-        />
-        <Input
-          labelText="Password"
-          type="password"
-          value={password}
-          handleChage={(event) => updateState(setPassword, event)}
-        />
-        <Input
-          labelText="Confirm Password"
-          type="password"
-          value={password}
-          handleChage={(event) => updateState(setPasswordChecked, event)}
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.register_form}>
+        <label className={styles.label}>
+          <p>Email</p>
+          <input {...register("email", { required: true })} />
+        </label>
+        <label className={styles.label}>
+          <p>Username</p>
+          <input {...register("username", { required: true, minLength: 4 })} />
+        </label>
+        <label className={styles.label}>
+          <p>Password</p>
+          <input
+            type="password"
+            {...register("password", { required: true, minLength: 5 })}
+          />
+        </label>
         <Button text={loading ? "LOADING" : "REGISTER"} />
         <Link href="/auth/login">
           <a>If you alredy have an account please click here to login</a>
