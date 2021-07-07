@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import Button from "../../comps/Controls/Button";
+import Input from "../../comps/Controls/Input";
 import ToggleBtn from "../../comps/AddItem/ToggleBtn";
 import styles from "../../styles/AddItem/AddItem.module.scss";
 import { useEffect, useState } from "react";
@@ -145,26 +147,16 @@ const Update = ({ cookies, settings, API_URL }) => {
       className={styles.new}
     >
       <form className={styles.newForm} onSubmit={(event) => updateItem(event)}>
-        <section className={styles.formSection}>
-          <h3>Title</h3>
-          <input
-            value={title}
-            onChange={(event) => {
-              updateTitle(event);
-            }}
-            type="text"
-            className={styles.input}
-          />
-        </section>
-        <section className={styles.formSection}>
-          <h3>Amount</h3>
-          <input
-            value={amount}
-            onChange={(event) => updateAmount(event)}
-            type="text"
-            className={styles.input}
-          />
-        </section>
+        <Input
+          labelText="Title"
+          value={title}
+          handleChage={(event) => updateTitle(event)}
+        />
+        <Input
+          labelText="Amount"
+          value={amount}
+          handleChage={(event) => updateAmount(event)}
+        />
         <section className={styles.formSection}>
           <h3>{toggleChecked ? "INCOME" : "EXPENSE"}</h3>
           <ToggleBtn
@@ -172,14 +164,7 @@ const Update = ({ cookies, settings, API_URL }) => {
             updateToggleChecked={updateToggleChecked}
           />
         </section>
-        <section>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-          <button type="submit" className={styles.addBtn}>
-            Update
-          </button>
-        </section>
+        <Button text="Update" />
       </form>
     </motion.section>
   );

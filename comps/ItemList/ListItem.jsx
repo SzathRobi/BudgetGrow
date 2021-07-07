@@ -77,6 +77,7 @@ const ListItem = ({ transaction, cookies, settings }) => {
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}
       transition={{
+        duration: 0.3,
         type: "spring",
         damping: 10,
         stiffness: 100,

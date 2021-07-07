@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Header/Header.module.scss";
 import { useEffect, useState } from "react";
 
-const Header = ({ updateAddItemOpen }) => {
+const Header = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
   const cookies = parseCookies();
 

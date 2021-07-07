@@ -1,14 +1,11 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import nookies from "nookies";
-import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import AddItem from "../comps/AddItem/AddItem";
 import ItemList from "../comps/ItemList/ItemList";
-import Total from "../comps/Total/Total";
 import Circular from "../comps/Total/progress/Circular";
+import { useBudget } from "../context/budgetContext";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
 import Filters from "../comps/Filters/Filters";
@@ -44,7 +41,8 @@ export async function getServerSideProps(ctx) {
 
 export default function Home({ cookies, transactions, settings }) {
   const router = useRouter();
-
+  const testContext = useBudget();
+  console.log("testContext is:", testContext);
   const [user, setUser] = useState(null);
   console.log("transactions:", transactions);
   console.log("settings:", settings);
@@ -107,28 +105,18 @@ export default function Home({ cookies, transactions, settings }) {
         <meta name="theme-color" content="#317EFB" />
       </Head>
 
-      {
-        /*!user ? (
-        <section className={styles.error_page}>
-          <Button
-            text={"LOGIN"}
-            handleClick={() => router.push("/auth/login")}
-          />
-        </section>
-      ) : (*/
-        <main className={styles.main}>
-          <Circular settings={settings[0]} />
-          <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
-          <ItemList
-            cookies={cookies}
-            settings={settings[0]}
-            tab={tab}
-            transactions={transactions}
-            transaction_income={transaction_income}
-            transaction_expense={transaction_expense}
-          />
-        </main>
-      }
+      <main className={styles.main}>
+        <Circular settings={settings[0]} />
+        <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
+        <ItemList
+          cookies={cookies}
+          settings={settings[0]}
+          tab={tab}
+          transactions={transactions}
+          transaction_income={transaction_income}
+          transaction_expense={transaction_expense}
+        />
+      </main>
     </motion.section>
   );
 }

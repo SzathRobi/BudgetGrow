@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import nookies, { destroyCookie } from "nookies";
 import SettingLink from "../../comps/SettingCard/SettingLink";
 import styles from "../../styles/Settings/Settings.module.scss";
@@ -14,9 +15,11 @@ export async function getServerSideProps(ctx) {
 }
 
 function Settings({ cookies }) {
+  const router = useRouter();
   const logut = () => {
     destroyCookie(null, "user");
     destroyCookie(null, "jwt");
+    router.reload();
     console.log("logged out");
   };
 

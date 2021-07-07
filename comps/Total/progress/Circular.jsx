@@ -16,7 +16,7 @@ function Circular({ settings }) {
     <div className={styles.box}>
       <div className={styles.circle_container}>
         <svg>
-          <circle style={circleStyle} cx="90" cy="90" r="80"></circle>
+          <circle style={circleStyle} cx="105" cy="105" r="70"></circle>
         </svg>
         <p className={styles.current}>{settings.current}$</p>
         <p className={styles.percent}>{sexyPercent}%</p>
