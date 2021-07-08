@@ -3,13 +3,13 @@ import Header from "../comps/Header/Header";
 import "../styles/globals.scss";
 import { AnimatePresence } from "framer-motion";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps }) {
   return (
     <section>
       <ContextWrapper>
         <Header />
         <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={router.route} />
+          <Component {...pageProps} /> {/*///////  maybe need a key   //////*/}
         </AnimatePresence>
       </ContextWrapper>
     </section>
