@@ -1,0 +1,35 @@
+@import "../utility/variables.scss";
+
+.settings {
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.settings_form {
+  padding: 1rem 1.5rem;
+  background-color: $color-darkest;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  box-shadow: 3px 3px 6px #000, -2px -2px 4px #666;
+  position: relative;
+  top: -3rem;
+}
+
+.settings_form a {
+  width: 100%;
+  font-size: 0.9rem;
+  color: $color-text;
+}
+
+.error_text {
+  width: 100%;
+  color: $color-text--error;
+  transform: translateY(-0.5rem);
+  font-size: 0.9rem;
+}

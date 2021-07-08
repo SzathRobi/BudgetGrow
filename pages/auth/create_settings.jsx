@@ -3,6 +3,17 @@ import { motion } from "framer-motion";
 import nookies from "nookies";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import styles from "../../styles/auth/CreateSettings.module.scss";
+import Button from "../../comps/Controls/Button";
+
+/**
+ * IIIIIIIIIII
+ *
+ * settings_form: have to add onSubmit hook + header: {display: hidden}
+ *
+ * IIIIIIIIIII
+ */
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
@@ -22,6 +33,12 @@ function Create_settings({ cookies }) {
   const [expense, setExpense] = useState("");
   const [current, setCurrent] = useState("");
   const updateState = (type, event) => type(event.target.value);
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const createSettings = (event) => {
     event.preventDefault();
@@ -59,34 +76,41 @@ function Create_settings({ cookies }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      className={styles.settings}
     >
-      <form onSubmit={(event) => createSettings(event)}>
+      <form
+        onSubmit={(event) => createSettings(event)}
+        className={styles.settings_form}
+      >
         <h1>Settings</h1>
-        <div>
-          <h2>Total Income</h2>
+        <label className={styles.label}>
+          <p>Monthly Income</p>
           <input
-            value={income}
-            onChange={(event) => updateState(setIncome, event)}
             type="text"
+            {...register("monthly_income", { required: true })}
           />
-        </div>
-        <div>
-          <h2>Total Expense</h2>
+          {errors.monthly_income?.type === "required" && (
+            <p className={styles.error_text}>Monthly income is required</p>
+          )}
+        </label>
+        <label className={styles.label}>
+          <p>Monthly Expense</p>
           <input
-            value={expense}
-            onChange={(event) => updateState(setExpense, event)}
             type="text"
+            {...register("monthly_expense", { required: true })}
           />
-        </div>
-        <div>
-          <h2>Current</h2>
-          <input
-            value={current}
-            onChange={(event) => updateState(setCurrent, event)}
-            type="text"
-          />
-        </div>
-        <button>OK</button>
+          {errors.monthly_expense?.type === "required" && (
+            <p className={styles.error_text}>Monthly expense is required</p>
+          )}
+        </label>
+        <label className={styles.label}>
+          <p>Current amount of money</p>
+          <input type="text" {...register("current", { required: true })} />
+          {errors.current?.type === "required" && (
+            <p className={styles.error_text}>Monthly income is required</p>
+          )}
+        </label>
+        <Button text="OK" />
       </form>
     </motion.section>
   );
