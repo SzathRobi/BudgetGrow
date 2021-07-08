@@ -77,7 +77,6 @@ export default function Home({ cookies, transactions, settings }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ type: "tween" }}
       className={styles.container}
     >
       <Head>

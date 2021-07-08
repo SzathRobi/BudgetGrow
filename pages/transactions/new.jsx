@@ -106,7 +106,6 @@ const New = ({ cookies, settings, API_URL }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ type: "tween" }}
       className={styles.new}
     >
       <form className={styles.newForm} onSubmit={(event) => createItem(event)}>

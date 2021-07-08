@@ -39,7 +39,6 @@ function Settings({ cookies }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ type: "tween" }}
     >
       <SettingLink title="MONTHLY INCOME" href="/settings/income" />
       <SettingLink title="MONTHLY EXPENSE" href="/settings/expense" />
