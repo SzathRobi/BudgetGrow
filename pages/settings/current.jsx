@@ -1,8 +1,12 @@
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import nookies from "nookies";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import BudgetContext from "../../context/budgetContext";
+import styles from "../../styles/Settings/SettingDetail.module.scss";
+import Button from "../../comps/Controls/Button";
 
 export async function getServerSideProps(ctx) {
   const API_URL = "https://budgetgrow.herokuapp.com";
@@ -66,14 +70,20 @@ function Current({ cookies, settings, API_URL }) {
   };
 
   return (
-    <section>
-      <button onClick={goBack}>BACK</button>
-      <form onSubmit={(event) => handleUpdate(event)}>
-        <div className="">
-          <h2>Current money:</h2>
+    <section className={styles.setting_detail}>
+      <label>
+        <button onClick={goBack}>BACK</button>
+        <FontAwesomeIcon className={styles.icon} icon={faArrowLeft} />
+      </label>
+      <form
+        onSubmit={(event) => handleUpdate(event)}
+        className={styles.setting_form}
+      >
+        <div>
+          <h2 className={styles.form_title}>Current money:</h2>
           <input onChange={(event) => updateCurrent(event)} type="text" />
         </div>
-        <button type="submit">UPDATE</button>
+        <Button text="UPDATE" />
       </form>
       <p>tutorial texts</p>
     </section>

@@ -2,8 +2,9 @@ $color-primary: #252525;
 $color-secondary: #20ffaf;
 $color-secondary-support: #72ffc4;
 $color-darkest: #1a1a1a;
-$color-text: #d8b0b0;
+$color-text: #f4f4f4;
 $color-text--error: rgb(255, 8, 0);
+$color-form: #2a2a2a;
 
 @mixin input {
   width: 100%;

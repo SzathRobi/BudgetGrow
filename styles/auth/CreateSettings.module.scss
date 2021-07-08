@@ -11,14 +11,20 @@
 }
 
 .settings_form {
-  padding: 1rem 1.5rem;
-  background-color: $color-darkest;
+  padding: 1.5rem;
+  background-color: $color-form;
   display: flex;
   flex-direction: column;
   border-radius: 0.3rem;
   box-shadow: 3px 3px 6px #000, -2px -2px 4px #666;
   position: relative;
   top: -3rem;
+
+  h1 {
+    color: $color-text;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .settings_form a {

@@ -13,10 +13,10 @@ function Filters({ tab, tabPos, updateTab }) {
         <button className={styles.btn} onClick={() => updateTab(0, 0)}>
           ALL
         </button>
-        <button className={styles.btn} onClick={() => updateTab(1, 50)}>
+        <button className={styles.btn} onClick={() => updateTab(1, 53)}>
           INCOME
         </button>
-        <button className={styles.btn} onClick={() => updateTab(2, 145)}>
+        <button className={styles.btn} onClick={() => updateTab(2, 147)}>
           EXPENSE
         </button>
         <motion.div
