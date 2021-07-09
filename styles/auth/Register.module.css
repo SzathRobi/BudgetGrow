@@ -1,0 +1,47 @@
+.register {
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.register_form {
+  padding: 1rem 1.5rem;
+  background-color: #2a2a2a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 3px 3px 6px #000, -2px -2px 4px #666;
+          box-shadow: 3px 3px 6px #000, -2px -2px 4px #666;
+  position: relative;
+  top: -3rem;
+}
+
+.register_form a {
+  width: 100%;
+  font-size: 0.9rem;
+  color: #f4f4f4;
+}
+
+.error_text {
+  width: 100%;
+  color: #ff0800;
+  -webkit-transform: translateY(-0.5rem);
+          transform: translateY(-0.5rem);
+  font-size: 0.9rem;
+}
+/*# sourceMappingURL=Register.module.css.map */

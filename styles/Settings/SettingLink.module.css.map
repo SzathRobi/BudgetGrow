@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,MAAM;EACd,OAAO,EAAE,WAAW;EACpB,gBAAgB,ECHF,OAAO;EDIrB,KAAK,ECNW,OAAO;EDOvB,SAAS,EAAE,MAAM;EACjB,UAAU,EAAE,MAAM;EAClB,aAAa,EAAE,MAAM;EACrB,UAAU,EAAE,qCAAqC;CAClD",
+    "sources": [
+        "SettingLink.module.scss",
+        "../utility/variables.scss"
+    ],
+    "names": [],
+    "file": "SettingLink.module.css"
+}

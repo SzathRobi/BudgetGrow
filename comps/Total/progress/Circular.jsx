@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../../styles/Total/Circular.module.scss";
 
 function Circular({ settings }) {
@@ -11,6 +11,15 @@ function Circular({ settings }) {
   const circleStyle = {
     strokeDashoffset: reversedPercent,
   };
+
+  useEffect(() => {
+    if (percent > 100) {
+      percent === 100;
+    }
+    if (reversedPercent > 500) {
+      reversedPercent === 100;
+    }
+  }, [percent]);
 
   return (
     <div className={styles.box}>

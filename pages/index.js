@@ -106,15 +106,17 @@ export default function Home({ cookies, transactions, settings }) {
 
       <main className={styles.main}>
         <Circular settings={settings[0]} />
-        <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
-        <ItemList
-          cookies={cookies}
-          settings={settings[0]}
-          tab={tab}
-          transactions={transactions}
-          transaction_income={transaction_income}
-          transaction_expense={transaction_expense}
-        />
+        <section className={styles.main_container}>
+          <Filters tab={tab} tabPos={tabPos} updateTab={updateTab} />
+          <ItemList
+            cookies={cookies}
+            settings={settings[0]}
+            tab={tab}
+            transactions={transactions}
+            transaction_income={transaction_income}
+            transaction_expense={transaction_expense}
+          />
+        </section>
       </main>
     </motion.section>
   );

@@ -1,0 +1,45 @@
+.listItem {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  width: 18rem;
+  height: 4.5rem;
+  background-color: #151515;
+  border-radius: 0.4rem;
+  -webkit-box-shadow: inset 5px 5px 14px #000, inset -2px -3px 6px #575757;
+          box-shadow: inset 5px 5px 14px #000, inset -2px -3px 6px #575757;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.listItem h4:last-of-type {
+  color: #f4f4f4;
+}
+
+.listItem span {
+  color: #f4f4f4;
+}
+
+.btnContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 0 auto;
+}
+
+.icon {
+  color: #20ffaf;
+  font-size: 1.7rem;
+  margin: auto 0.6rem;
+}
+
+.priceIndicator {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=ListItem.module.css.map */

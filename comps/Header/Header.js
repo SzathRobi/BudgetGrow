@@ -55,39 +55,39 @@ const Header = () => {
       <nav className={styles.nav}>
         <div className={styles.container}>
           <div className={styles.linkContainer} style={homeTabStyle}>
-            <FontAwesomeIcon icon={faHome} className={styles.icon} />
             <Link href={"/"}>
               <a
                 onClick={() => setNavTabs(1)}
                 id={styles.navBtn_first}
                 className={styles.navBtn}
               >
+                <FontAwesomeIcon icon={faHome} className={styles.icon} />
                 HOME
               </a>
             </Link>
           </div>
 
           <div className={styles.linkContainer} style={newItemTabStyle}>
-            <FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
             <Link href={"/transactions/new"}>
               <a
                 onClick={() => setNavTabs(2)}
                 id={styles.navBtn_first}
                 className={styles.navBtn}
               >
+                <FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
                 NEW
               </a>
             </Link>
           </div>
 
           <div className={styles.linkContainer} style={settingsTabStyle}>
-            <FontAwesomeIcon icon={faCog} className={styles.icon} />
             <Link href="/settings">
               <a
                 onClick={() => setNavTabs(3)}
                 id={styles.navBtn_last}
                 className={styles.navBtn}
               >
+                <FontAwesomeIcon icon={faCog} className={styles.icon} />
                 SETTINGS
               </a>
             </Link>

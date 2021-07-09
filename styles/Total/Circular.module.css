@@ -1,9 +1,7 @@
-@import "../utility/variables.scss";
-
 .box {
   height: 15rem;
   width: 100%;
-  background: $color-primary;
+  background: #252525;
   position: relative;
   border-radius: 5px;
 }
@@ -14,7 +12,6 @@
   position: relative;
   top: 2rem;
   margin: 0 auto;
-  //transform: rotate((-90deg));
 }
 
 .box svg {
@@ -25,17 +22,20 @@
   position: absolute;
   left: 50%;
   top: 100%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  box-shadow: 6px -4px 12px #111, -2px 2px 4px #555;
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+  -webkit-box-shadow: 6px -4px 12px #111, -2px 2px 4px #555;
+          box-shadow: 6px -4px 12px #111, -2px 2px 4px #555;
 }
 
 .box svg circle {
   fill: transparent;
-  stroke: $color-secondary;
+  stroke: #20ffaf;
   stroke-width: 12;
   stroke-linecap: round;
   stroke-dasharray: 500;
-  filter: drop-shadow(0 0 4px $color-secondary);
+  -webkit-filter: drop-shadow(0 0 4px #20ffaf);
+          filter: drop-shadow(0 0 4px #20ffaf);
 }
 
 .box .progress {
@@ -45,14 +45,15 @@
   text-align: center;
   font-size: 25px;
   font-weight: 800;
-  color: $color-secondary;
+  color: #20ffaf;
 }
 
 .box .percent,
 .box .current {
-  color: $color-secondary;
+  color: #20ffaf;
   position: absolute;
-  transform: translate(-50%, 70%);
+  -webkit-transform: translate(-50%, 70%);
+          transform: translate(-50%, 70%);
 }
 
 .box .percent {
@@ -67,9 +68,4 @@
   left: 50%;
   font-size: 1.4rem;
 }
-
-@media (min-width: 1024px) {
-  .box {
-    width: 40%;
-  }
-}
+/*# sourceMappingURL=Circular.module.css.map */

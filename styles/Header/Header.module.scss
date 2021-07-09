@@ -36,7 +36,6 @@
   svg {
     font-size: 1.5rem;
     color: $color-secondary;
-    transform: translateY(0.5rem);
   }
 }
 
@@ -44,17 +43,55 @@
   flex: 1;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: $color-darkest;
+  justify-content: space-evenly;
   color: $color-secondary-support;
   transition: 300ms;
   cursor: pointer;
 }
 
 @media (min-width: 1024px) {
-  .navBtn:hover {
-    color: $color-secondary;
-    text-shadow: 0 0 4px $color-secondary;
+  .header {
+    top: 0;
+    width: 12rem;
+    height: 100%;
+  }
+
+  .container {
+    width: 12rem;
+    flex-direction: column;
+  }
+
+  .nav {
+    width: 30rem;
+    height: 40%;
+    min-height: 15rem;
+    margin: 1rem 1rem 1rem auto;
+    box-shadow: none;
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .linkContainer {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .navBtn {
+    box-shadow: 0 0 0 red;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    &:hover {
+      color: $color-secondary;
+      text-shadow: 0 0 4px $color-secondary;
+    }
+
+    .icon {
+      //transform: translateY(-0.5rem);
+      font-size: 1.2rem;
+      margin: 0 1rem 0 2rem;
+    }
   }
 }

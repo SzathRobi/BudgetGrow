@@ -1,0 +1,77 @@
+.new {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #1a1a1a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.newForm {
+  width: 80%;
+  padding: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.formSection {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #f4f4f4;
+}
+
+.input {
+  margin: 1rem 0;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  width: 14rem;
+  height: 2.5rem;
+  border-radius: 0.6rem;
+  color: #f4f4f4;
+  background: -webkit-gradient(linear, left bottom, left top, from(#333), to(#000));
+  background: linear-gradient(0deg, #333, #000);
+  -webkit-box-shadow: 0 0 0 2px #353535, 0 0 0 3px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 0.5), inset 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 0 2px #353535, 0 0 0 3px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 0.5), inset 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.addBtn {
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  background-color: #20ffaf;
+  -webkit-box-shadow: 0 0 8px #72ffc4;
+          box-shadow: 0 0 8px #72ffc4;
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+/*# sourceMappingURL=AddItem.module.css.map */

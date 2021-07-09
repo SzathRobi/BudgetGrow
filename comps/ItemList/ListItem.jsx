@@ -77,6 +77,8 @@ const ListItem = ({ transaction, cookies, settings }) => {
     router.push(`/transactions/${transaction.id}`);
   };
 
+  const created_at = transaction.published_at.slice(0, 10);
+
   return (
     <motion.section
       initial={{ scale: 0, opacity: 0 }}
@@ -95,6 +97,7 @@ const ListItem = ({ transaction, cookies, settings }) => {
           {transaction.amount} <span>FT</span>
         </h4>
         <h4>{transaction.title}</h4>
+        <p>{created_at}</p>
       </section>
       <section className={styles.btnContainer}>
         <FontAwesomeIcon

@@ -51,3 +51,14 @@ input {
 label p {
   color: $color-secondary;
 }
+
+.page {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .page {
+    width: calc(100% - 12rem);
+    transform: translateX(12rem);
+  }
+}

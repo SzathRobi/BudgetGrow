@@ -8,9 +8,12 @@ function MyApp({ Component, pageProps }) {
     <section>
       <ContextWrapper>
         <Header />
-        <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} /> {/*///////  maybe need a key   //////*/}
-        </AnimatePresence>
+        <div className="page">
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} />{" "}
+            {/*///////  maybe need a key   //////*/}
+          </AnimatePresence>
+        </div>
       </ContextWrapper>
     </section>
   );
