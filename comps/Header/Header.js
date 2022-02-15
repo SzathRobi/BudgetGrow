@@ -6,20 +6,18 @@ import styles from "../../styles/Header/Header.module.scss";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import BudgetContext from "../../context/budgetContext";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   const { navTabs, setNavTabs } = useContext(BudgetContext);
-  useEffect(() => {
-    console.log(navTabs);
-  }, [navTabs]);
-  //console.log("navTabs in header:", navTabs);
 
   const [headerVisible, setHeaderVisible] = useState(false);
   const cookies = parseCookies();
 
-  //console.log("cookies in header:", cookies);
   useEffect(() => {
-    if (cookies?.jwt) {
+    console.log(cookies.jwt);
+    if (cookies?.jwt && router.pathname !== "/auth/create_settings") {
       setHeaderVisible(true);
       return;
     }

@@ -25,7 +25,14 @@
   justify-content: center;
 }
 
+.error_page button {
+  margin: 0 auto;
+}
+
 @media (min-width: 1024px) {
+  .container {
+    padding-left: 14rem;
+  }
   .main {
     padding-top: 5rem;
     width: 100%;

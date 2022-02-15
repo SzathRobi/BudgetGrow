@@ -15,7 +15,7 @@ body {
 body {
   background-color: $color-primary;
   width: 100vw;
-  overflow-x: hidden;
+  overflow-x: visible;
 }
 
 p,
@@ -57,8 +57,4 @@ label p {
 }
 
 @media (min-width: 1024px) {
-  .page {
-    width: calc(100% - 12rem);
-    transform: translateX(12rem);
-  }
 }

@@ -73,6 +73,7 @@ function Login() {
       className={styles.login}
     >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+        <h1>Login</h1>
         <label className={styles.label}>
           <p>Username</p>
           <input {...register("identifier", { required: true })} />

@@ -58,6 +58,7 @@ function Register() {
       className={styles.register}
     >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.register_form}>
+        <h1>Register</h1>
         <label className={styles.label}>
           <p>Email</p>
           <input type="email" {...register("email", { required: true })} />

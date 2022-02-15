@@ -68,10 +68,18 @@ export default function Home({ cookies, transactions, settings }) {
   const transaction_expense =
     user && transactions.filter((transaction) => !transaction.income);
 
+  const btnPos = {
+    position: "absolute",
+    top: "50vh",
+    left: "50%",
+    transform: "translateX(-50%)",
+  };
   return !user ? (
-    <section className={styles.error_page}>
-      <Button text={"LOGIN"} handleClick={() => router.push("/auth/login")} />
-    </section>
+    <Button
+      text={"LOGIN"}
+      handleClick={() => router.push("/auth/login")}
+      style={btnPos}
+    />
   ) : (
     <motion.section
       initial={{ opacity: 0 }}
