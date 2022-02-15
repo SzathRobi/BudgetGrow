@@ -7,3 +7,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (min-width: 1024px) {
+  .settings {
+    padding-left: 14rem;
+  }
+}
