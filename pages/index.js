@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import nookies from "nookies";
 import { useEffect, useState, useContext } from "react";
@@ -68,18 +69,35 @@ export default function Home({ cookies, transactions, settings }) {
   const transaction_expense =
     user && transactions.filter((transaction) => !transaction.income);
 
+  const imgPos = {
+    position: "absolute",
+    top: "10vh",
+    left: "50%",
+    transform: "translateX(-50%)",
+  };
+
   const btnPos = {
     position: "absolute",
-    top: "50vh",
+    top: "75vh",
     left: "50%",
     transform: "translateX(-50%)",
   };
   return !user ? (
-    <Button
-      text={"LOGIN"}
-      handleClick={() => router.push("/auth/login")}
-      style={btnPos}
-    />
+    <>
+      <div style={imgPos}>
+        <Image
+          src="/imgs/budgetGrowMe.svg"
+          width={340}
+          height={340}
+          alt="me mysfel and I"
+        />
+      </div>
+      <Button
+        text={"LOGIN"}
+        handleClick={() => router.push("/auth/login")}
+        style={btnPos}
+      />
+    </>
   ) : (
     <motion.section
       initial={{ opacity: 0 }}
